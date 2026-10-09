@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDompet - Aplikasi Pengatur Uang Saku</title>
+    
+    <link href="fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4f46e5">
+</head>
+<body class="app-body">
+
+    <div id="app-container" class="app-container">
+        
+        <div id="drag-handle" class="drag-handle"></div>
+
+        <div id="view-mulai" class="view-section active view-start">
+            <div class="start-content">
+                <div class="start-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h1>MyDompet</h1>
+                <p>Kelola uang saku Anda dengan lebih mudah</p>
+            </div>
+            
+            <button onclick="navigate('view-dashboard')" class="btn-primary start-btn">
+                MULAI
+            </button>
+        </div>
+
+        <div id="view-dashboard" class="view-section view-dashboard">
+            <div class="dash-header">
+                <div class="dash-header-top">
+                    <div>
+                        <p class="subtitle">Halo</p>
+                        <h2>Dashboard</h2>
+                    </div>
+                    <button onclick="toggleTema()" class="btn-icon theme-toggle" aria-label="Ganti Tema">
+                        <i id="ikon-tema" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                
+                <div class="dash-balance">
+                    <p class="subtitle">Sisa Uang Saku</p>
+                    <h1 id="dash-sisa">Rp 0</h1>
+                </div>
+            </div>
+
+            <div class="dash-stats-wrapper">
+                <div class="stat-card">
+                    <div class="stat-icon bg-red">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>Total Pengeluaran</p>
+                        <p class="stat-value" id="dash-pengeluaran">Rp 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-menu">
+                <h3>Pilih Menu</h3>
+                <div class="menu-grid">
+                    <button onclick="navigate('view-catat')" class="menu-btn">
+                        <div class="menu-icon bg-blue"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <span>Catat</span>
+                    </button>
+                    <button onclick="navigate('view-anggaran')" class="menu-btn">
+                        <div class="menu-icon bg-purple"><i class="fa-solid fa-chart-pie"></i></div>
+                        <span>Anggaran</span>
+                    </button>
+                    <button onclick="navigate('view-riwayat')" class="menu-btn">
+                        <div class="menu-icon bg-orange"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <span>Riwayat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-catat" class="view-section page-view">
+            <div class="page-header">
+                <button onclick="navigate('view-dashboard')" class="btn-back" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Catat Pengeluaran</h2>
+            </div>
+            
+            <div class="page-content">
+                <form id="form-catat" onsubmit="simpanData(event)" class="form-container">
+                    <div class="form-group">
+                        <label for="input-nominal">Nominal (Rp)</label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix">Rp</span>
+                            <input type="number" id="input-nominal" required class="input-field input-large" placeholder="0" min="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <input type="hidden" id="input-kategori" value="Makanan & Minuman" required>
+                        <div class="kategori-grid" id="kategori-container">
+                            <button type="button" onclick="pilihKategori('Makanan & Minuman', this)" class="kategori-btn active">
+                                <i class="fa-solid fa-burger"></i> <span>Makanan</span>
+                            </button>
+                            <button type="button" onclick="pilihKategori('Transportasi', this)" class="kategori-btn">
+                                <i class="fa-solid fa-motorcycle"></i> <span>Transport</span>
+                            </button>
+                            <button type="button" onclick="pilihKategori('Tugas & Kuliah', this)" class="kategori-btn">
+                                <i class="fa-solid fa-book"></i> <span>Tugas</span>
+                            </button>
+                            <button type="button" onclick="pilihKategori('Hiburan', this)" class="kategori-btn">
+                                <i class="fa-solid fa-gamepad"></i> <span>Hiburan</span>
+                            </button>
+                            <button type="button" onclick="pilihKategori('Lainnya', this)" class="kategori-btn col-span-2">
+                                <i class="fa-solid fa-wallet"></i> <span>Lainnya</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="input-keterangan">Keterangan (Opsional)</label>
+                        <input type="text" id="input-keterangan" class="input-field" placeholder="Contoh: Beli ayam geprek">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary mt-auto">SIMPAN</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="view-anggaran" class="view-section page-view bg-light">
+            <div class="page-header sticky">
+                <button onclick="navigate('view-dashboard')" class="btn-back" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Atur Anggaran</h2>
+            </div>
+            
+            <div class="page-content">
+                <form id="form-anggaran" class="card-box form-anggaran">
+                    <div class="form-group m-0">
+                        <label for="input-anggaran">Total Anggaran Bulanan</label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix">Rp</span>
+                            <input type="number" id="input-anggaran" required class="input-field input-large" placeholder="0" min="1">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">SIMPAN</button>
+                </form>
+
+                <div class="card-box mb-4">
+                    <p class="text-muted">Total Anggaran Bulanan</p>
+                    <h3 class="total-anggaran-text" id="anggaran-total">Rp 0</h3>
+                    
+                    <div class="progress-track">
+                        <div id="anggaran-bar" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text" id="anggaran-persen">0% Terpakai</p>
+                </div>
+
+                <h4 class="section-title">Alokasi per Kategori</h4>
+                <div class="kategori-list" id="kategori-list">
+                </div>
+            </div>
+        </div>
+
+        <div id="view-riwayat" class="view-section page-view bg-light">
+            <div class="page-header sticky">
+                <button onclick="navigate('view-dashboard')" class="btn-back" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Lihat Riwayat</h2>
+            </div>
+            
+            <div class="page-content flex-col">
+                <div id="riwayat-list" class="riwayat-list">
+                </div>
+
+                <div class="riwayat-footer">
+                    <div>
+                        <p class="text-muted">Per Tanggal</p>
+                        <p id="riwayat-label-bulan" class="font-semibold">--/--/----</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-muted">Total Bulan Ini</p>
+                        <h3 class="total-bulan-text" id="riwayat-total-bulan">Rp 0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-detail" class="view-section page-view">
+            <div class="page-header">
+                <button onclick="navigate('view-riwayat')" class="btn-back" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Detail Transaksi</h2>
+            </div>
+            
+            <div class="page-content detail-content">
+                <div id="detail-icon" class="detail-icon">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <h3 id="detail-nominal" class="detail-nominal">Rp 0</h3>
+                <span id="detail-kategori" class="badge-kategori">Kategori</span>
+                
+                <div class="detail-info-box">
+                    <div class="info-item">
+                        <p class="label">Tanggal</p>
+                        <p id="detail-tanggal" class="value">Hari ini</p>
+                    </div>
+                    <div class="info-item">
+                        <p class="label">Keterangan</p>
+                        <p id="detail-keterangan" class="value">Keterangan</p>
+                    </div>
+                </div>
+
+                <button id="btn-hapus" class="btn-danger mt-auto">
+                    <i class="fa-solid fa-trash-can"></i> HAPUS
+                </button>
+            </div>
+        </div>
+
+        <div id="modal-hapus" class="modal-overlay hidden">
+            <div class="modal-backdrop" onclick="tutupModalHapus()"></div>
+            
+            <div class="modal-box">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3>Hapus Transaksi?</h3>
+                <p>Data transaksi ini akan dihapus secara permanen dan tidak dapat dikembalikan lagi.</p>
+                
+                <div class="modal-actions">
+                    <button onclick="tutupModalHapus()" class="btn-secondary">Batal</button>
+                    <button onclick="konfirmasiHapus()" class="btn-danger-solid">Hapus Data</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast">Data berhasil disimpan!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
