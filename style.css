@@ -216,8 +216,10 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
 }
 
 .app-container.is-floating {
-    width: 400px;
-    height: 750px;
+    width: 100%;
+    height: 90%;
+    max-width: 400px;
+    max-height: 750px;
     border-radius: 1.5rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .4);
 }
