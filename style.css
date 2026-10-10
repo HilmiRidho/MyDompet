@@ -213,6 +213,7 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
     overflow: hidden;
     transition: width .1s ease, height .1s ease, border-radius .1s ease, transform .1s ease;
     z-index: 1000;
+    will-change: transform;
 }
 
 .app-container.is-floating {
@@ -448,7 +449,7 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
     align-items: center;
     gap: .375rem;
     position: absolute;
-    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
