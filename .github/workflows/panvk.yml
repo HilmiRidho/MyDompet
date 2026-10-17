@@ -1,0 +1,79 @@
+name: Build PanVK for ARM64 (Android glibc)
+
+on:
+  workflow_dispatch: # Memungkinkan Anda menjalankan build secara manual dengan 1 klik
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Pasang Arsitektur ARM64 & Dependensi
+        run: |
+          sudo dpkg --add-architecture arm64
+          sudo apt-get update
+          sudo apt-get install -y \
+            crossbuild-essential-arm64 \
+            meson ninja-build python3-mako python3-yaml \
+            bison flex pkg-config cmake \
+            libdrm-dev:arm64 \
+            libx11-dev:arm64 libxext-dev:arm64 libxfixes-dev:arm64 \
+            libxcb-glx0-dev:arm64 libxcb-shm0-dev:arm64 libx11-xcb-dev:arm64 \
+            libxcb-dri2-0-dev:arm64 libxcb-dri3-dev:arm64 libxcb-present-dev:arm64 \
+            libxcb-randr0-dev:arm64 libxrandr-dev:arm64 libxxf86vm-dev:arm64 \
+            libwayland-dev:arm64 wayland-protocols \
+            libglvnd-dev:arm64 zlib1g-dev:arm64 libzstd-dev:arm64
+
+      - name: Unduh Source Code Mesa Terbaru
+        run: |
+          git clone --depth 1 https://gitlab.freedesktop.org/mesa/mesa.git
+
+      - name: Konfigurasi Cross-Compile ARM64
+        run: |
+          cat << 'EOF' > arm64-cross.txt
+          [binaries]
+          c = 'aarch64-linux-gnu-gcc'
+          cpp = 'aarch64-linux-gnu-g++'
+          ar = 'aarch64-linux-gnu-ar'
+          strip = 'aarch64-linux-gnu-strip'
+          pkgconfig = 'aarch64-linux-gnu-pkg-config'
+
+          [host_machine]
+          system = 'linux'
+          cpu_family = 'aarch64'
+          cpu = 'armv8-a'
+          endian = 'little'
+          EOF
+
+      - name: Setup Meson
+        run: |
+          cd mesa
+          meson setup build/ \
+            --cross-file ../arm64-cross.txt \
+            --prefix=/usr \
+            -Dbuildtype=release \
+            -Dplatforms=x11,wayland \
+            -Dgallium-drivers=panfrost \
+            -Dvulkan-drivers=panfrost \
+            -Dglx=dri \
+            -Dgbm=enabled \
+            -Degl=enabled \
+            -Dgles1=disabled \
+            -Dgles2=enabled
+
+      - name: Kompilasi Driver
+        run: |
+          cd mesa
+          ninja -C build/
+
+      - name: Persiapkan File Hasil Build
+        run: |
+          mkdir -p out/
+          DESTDIR=$(pwd)/out ninja -C mesa/build/ install
+          cd out/usr
+          tar -czvf ../../panvk-arm64-glibc.tar.gz .
+
+      - name: Upload File Jadi (Artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: panvk-arm64-glibc
+          path: panvk-arm64-glibc.tar.gz
