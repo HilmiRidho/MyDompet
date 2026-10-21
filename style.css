@@ -7,32 +7,32 @@
 
 /* ===== Variables ===== */
 :root {
-    /* Brand */
+    /* Brand (Tema Mint) */
     --color-white: #ffffff;
-    --color-primary: #7c3aed;
-    --color-primary-dark: #6d28d9;
-    --color-primary-light: #8b5cf6;
-    --color-primary-bg: #f5f3ff;
-    --color-primary-text: #ede9fe;      /* teks di atas warna primary */
-    --color-primary-on-bg: #6d28d9;     /* teks/ikon di atas primary-bg */
+    --color-primary: #10b981;       /* Mint utama */
+    --color-primary-dark: #047857;  /* Mint gelap */
+    --color-primary-light: #34d399; /* Mint terang */
+    --color-primary-bg: #ecfdf5;    /* Background elemen mint sangat muda */
+    --color-primary-text: #ffffff;  /* Teks terang di atas warna mint */
+    --color-primary-on-bg: #047857; /* Teks/ikon mint gelap di atas background mint muda */
 
     /* Surface */
-    --bg-main: #f3f4f6;
-    --bg-app: #f9fafb;
+    --bg-main: #f4fbf8;             /* Latar belakang utama (dengan hint mint sangat tipis) */
+    --bg-app: #f8fafc;
     --bg-card: #ffffff;
 
     /* Text */
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --text-light: #9ca3af;
+    --text-main: #0f172a;           /* Teks utama (slate gelap) */
+    --text-muted: #475569;          
+    --text-light: #94a3b8;          
 
     /* Border */
-    --border-color: #f3f4f6;
-    --border-input: #e5e7eb;
+    --border-color: #e2e8f0;
+    --border-input: #cbd5e1;
 
     /* Danger */
-    --color-danger: #ef4444;            /* isi solid (tombol, bar) */
-    --color-danger-text: #ef4444;       /* teks & ikon */
+    --color-danger: #ef4444;            
+    --color-danger-text: #ef4444;       
     --color-danger-bg: #fee2e2;
     --color-danger-bg-active: #fecaca;
     --color-danger-light: #fecaca;
@@ -42,23 +42,24 @@
     --purple-bg: #f3e8ff; --purple-text: #9333ea; --purple-bar: #c084fc;
     --orange-bg: #ffedd5; --orange-text: #ea580c; --orange-bar: #fb923c;
     --pink-bg: #fce7f3;   --pink-text: #db2777;   --pink-bar: #f472b6;
-    --gray-bg: #f9fafb;   --gray-text: #6b7280;   --gray-bar: #9ca3af;
+    --gray-bg: #f1f5f9;   --gray-text: #64748b;   --gray-bar: #94a3b8;
 }
 
 body.dark-mode {
-    --bg-main: #030712;
-    --bg-app: #111827;
-    --bg-card: #1f2937;
+    /* Nuansa gelap ke arah slate (cool dark) */
+    --bg-main: #020617;
+    --bg-app: #0f172a;
+    --bg-card: #1e293b;
 
-    --text-main: #f9fafb;
-    --text-muted: #9ca3af;
-    --text-light: #6b7280;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
 
-    --border-color: #374151;
-    --border-input: #374151;
+    --border-color: #334155;
+    --border-input: #334155;
 
-    --color-primary-bg: #2e1065;
-    --color-primary-on-bg: #c4b5fd;
+    --color-primary-bg: #064e3b;    /* Background mint gelap */
+    --color-primary-on-bg: #6ee7b7; /* Warna mint terang untuk teks di atas background gelap */
 
     --color-danger-text: #f87171;
     --color-danger-bg: rgba(248, 113, 113, .15);
@@ -68,7 +69,7 @@ body.dark-mode {
     --purple-bg: rgba(168, 85, 247, .15); --purple-text: #c084fc; --purple-bar: #a855f7;
     --orange-bg: rgba(249, 115, 22, .15); --orange-text: #fb923c; --orange-bar: #f97316;
     --pink-bg: rgba(236, 72, 153, .15);   --pink-text: #f472b6;   --pink-bar: #ec4899;
-    --gray-bg: rgba(255, 255, 255, .05);  --gray-text: #9ca3af;   --gray-bar: #9ca3af;
+    --gray-bg: rgba(255, 255, 255, .05);  --gray-text: #94a3b8;   --gray-bar: #94a3b8;
 }
 
 /* ===== Base ===== */
@@ -155,9 +156,6 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
 .card-box, .detail-info-box { padding: 1.25rem; }
 
 /* Shadows */
-.menu-btn, .card-box { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05); }
-.btn-primary, .dash-header { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1); }
-.start-icon, .stat-card { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1); }
 
 /* Buttons */
 .btn-primary, .btn-danger, .btn-secondary, .btn-danger-solid { font-weight: 700; font-size: 1rem; line-height: 1.25; }
@@ -222,7 +220,7 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
     max-width: 400px;
     max-height: 750px;
     border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .4);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .1);
 }
 
 .view-section {
