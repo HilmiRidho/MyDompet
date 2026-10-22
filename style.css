@@ -392,7 +392,7 @@ button:focus, input:focus, select:focus, textarea:focus { outline: none !importa
 .modal-actions { display: flex; gap: .75rem; }
 .btn-secondary { background-color: var(--bg-app); color: var(--text-main); }
 .btn-secondary:active { background-color: var(--border-input); }
-.btn-danger-solid { background-color: var(--color-danger); color: var(--color-white); box-shadow: 0 4px 6px -1px rgba(239, 68, 68, .3); }
+.btn-danger-solid { background-color: var(--color-danger); color: var(--color-white); }
 
 /* ===== Category colors ===== */
 .cat-bg-orange { background-color: var(--orange-bg); } .cat-text-orange { color: var(--orange-text); } .cat-bar-orange { background-color: var(--orange-bar); }
