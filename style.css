@@ -7,32 +7,32 @@
 
 /* ===== Variables ===== */
 :root {
-    /* Brand (Tema Mint) */
+    /* Brand */
     --color-white: #ffffff;
-    --color-primary: #10b981;       /* Mint utama */
-    --color-primary-dark: #047857;  /* Mint gelap */
-    --color-primary-light: #34d399; /* Mint terang */
-    --color-primary-bg: #ecfdf5;    /* Background elemen mint sangat muda */
-    --color-primary-text: #ffffff;  /* Teks terang di atas warna mint */
-    --color-primary-on-bg: #047857; /* Teks/ikon mint gelap di atas background mint muda */
+    --color-primary: #7c3aed;
+    --color-primary-dark: #6d28d9;
+    --color-primary-light: #8b5cf6;
+    --color-primary-bg: #f5f3ff;
+    --color-primary-text: #ede9fe;      /* teks di atas warna primary */
+    --color-primary-on-bg: #6d28d9;     /* teks/ikon di atas primary-bg */
 
     /* Surface */
-    --bg-main: #f4fbf8;             /* Latar belakang utama (dengan hint mint sangat tipis) */
-    --bg-app: #f8fafc;
+    --bg-main: #f3f4f6;
+    --bg-app: #f9fafb;
     --bg-card: #ffffff;
 
     /* Text */
-    --text-main: #0f172a;           /* Teks utama (slate gelap) */
-    --text-muted: #475569;          
-    --text-light: #94a3b8;          
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #9ca3af;
 
     /* Border */
-    --border-color: #e2e8f0;
-    --border-input: #cbd5e1;
+    --border-color: #f3f4f6;
+    --border-input: #e5e7eb;
 
     /* Danger */
-    --color-danger: #ef4444;            
-    --color-danger-text: #ef4444;       
+    --color-danger: #ef4444;            /* isi solid (tombol, bar) */
+    --color-danger-text: #ef4444;       /* teks & ikon */
     --color-danger-bg: #fee2e2;
     --color-danger-bg-active: #fecaca;
     --color-danger-light: #fecaca;
@@ -42,24 +42,23 @@
     --purple-bg: #f3e8ff; --purple-text: #9333ea; --purple-bar: #c084fc;
     --orange-bg: #ffedd5; --orange-text: #ea580c; --orange-bar: #fb923c;
     --pink-bg: #fce7f3;   --pink-text: #db2777;   --pink-bar: #f472b6;
-    --gray-bg: #f1f5f9;   --gray-text: #64748b;   --gray-bar: #94a3b8;
+    --gray-bg: #f9fafb;   --gray-text: #6b7280;   --gray-bar: #9ca3af;
 }
 
 body.dark-mode {
-    /* Nuansa gelap ke arah slate (cool dark) */
-    --bg-main: #020617;
-    --bg-app: #0f172a;
-    --bg-card: #1e293b;
+    --bg-main: #030712;
+    --bg-app: #111827;
+    --bg-card: #1f2937;
 
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-light: #64748b;
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --text-light: #6b7280;
 
-    --border-color: #334155;
-    --border-input: #334155;
+    --border-color: #374151;
+    --border-input: #374151;
 
-    --color-primary-bg: #064e3b;    /* Background mint gelap */
-    --color-primary-on-bg: #6ee7b7; /* Warna mint terang untuk teks di atas background gelap */
+    --color-primary-bg: #2e1065;
+    --color-primary-on-bg: #c4b5fd;
 
     --color-danger-text: #f87171;
     --color-danger-bg: rgba(248, 113, 113, .15);
@@ -69,7 +68,7 @@ body.dark-mode {
     --purple-bg: rgba(168, 85, 247, .15); --purple-text: #c084fc; --purple-bar: #a855f7;
     --orange-bg: rgba(249, 115, 22, .15); --orange-text: #fb923c; --orange-bar: #f97316;
     --pink-bg: rgba(236, 72, 153, .15);   --pink-text: #f472b6;   --pink-bar: #ec4899;
-    --gray-bg: rgba(255, 255, 255, .05);  --gray-text: #94a3b8;   --gray-bar: #94a3b8;
+    --gray-bg: rgba(255, 255, 255, .05);  --gray-text: #9ca3af;   --gray-bar: #9ca3af;
 }
 
 /* ===== Base ===== */
